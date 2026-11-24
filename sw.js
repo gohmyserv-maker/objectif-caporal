@@ -1,5 +1,5 @@
 // Changer VERSION (et version.json) à chaque mise à jour : le nouveau sw.js déclenche le rechargement.
-const VERSION = "2026.11.24-2";
+const VERSION = "2026.11.24-3";
 const CACHE = "objectif-caporal-" + VERSION;
 const CORE = ["./", "index.html", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 
