@@ -1404,6 +1404,10 @@ const Q = [
 ["explo","[[X423|1428]] Que signifie le X ?",["La matière réagit avec l'eau : ni eau, ni mousse","Matière explosive","Matière radioactive","Code inconnu"],0,"1428 = sodium."],
 ["explo","[[265|1017]] Que veut dire le 6 en 2e position ?",["Toxique","Comburant","Corrosif","Radioactif"],0,"Ici : chlore, gaz toxique et comburant."],
 ["explo","[[??|????]] Que trouve-t-on en bas de la plaque orange ?",["Le numéro ONU, qui identifie la matière","Le code danger","Le numéro du transporteur","La quantité transportée"],0,"En haut : le code danger."],
+["risque","Que veut dire COMIX (dangers des fumées) ?",["Chaudes, Opaques, Mobiles, Inflammables, Toxiques","Combustibles, Oxydantes, Mortelles, Irritantes, Explosives","Chaudes, Odorantes, Mouvantes, Isolantes, Toxiques","Corrosives, Opaques, Mobiles, Inertes, Toxiques"],0,"Le X vient de toXiques."],
+["risque","Des fumées très sombres et opaques indiquent :",["Qu'elles sont très chaudes et chargées en imbrûlés","Qu'elles sont froides","Qu'il n'y a plus de danger","Qu'elles contiennent surtout de la vapeur d'eau"],0,""],
+["risque","Des fumées qui sortent très vite du volume, c'est :",["La vélocité (M, mobiles)","La stratification","L'opacité","La toxicité"],0,"Plus elles sont chaudes, plus elles se dilatent."],
+["risque","Pourquoi les fumées chaudes montent et se stratifient ?",["Plus elles sont chaudes, plus elles sont légères","Elles sont plus lourdes que l'air","À cause de la toxicité","À cause de leur couleur"],0,""],
 ].map((r,i)=>({id:"q"+i,m:r[0],q:r[1],o:r[2],a:r[3],e:r[4]}));
 
 /* ================= ORAL ================= */
@@ -1897,6 +1901,13 @@ function vFinal(){
 <tr><td><b>H₂S</b> hydrogène sulfuré</td><td ${W}>Double cellule toxique</td><td class="num">ppm</td><td ${W}>Intoxication (odeur d'œuf pourri, puis le nez ne la sent plus)</td></tr>
 </tbody></table></div><p><b>4 gaz avec 3 cellules</b> : la double cellule toxique mesure le CO et l'H₂S.</p><div class="tbl"><table><thead><tr><th>Gaz</th><th>Basse</th><th>Haute</th></tr></thead><tbody><tr><td>EXPLO (% LIE)</td><td class="num">20</td><td class="num">40</td></tr><tr><td>O₂ (%)</td><td class="num">19,5</td><td class="num">22</td></tr><tr><td>CO (ppm)</td><td class="num">50</td><td class="num">200</td></tr><tr><td>H₂S (ppm)</td><td class="num">5</td><td class="num">10</td></tr></tbody></table></div><p>3 cellules pour 4 gaz, étalonné au méthane, alarme vibrante + sonore + visuelle, détecteur d'immobilité, alarme manuelle, 24 h de batterie.</p>`)
   +fFin("Méthane CH₄","Gaz naturel",`<ul><li>Toujours gazeux, <b>densité 0,55</b> : monte en partie haute.</li><li><b>LIE 5 %, LSE 15 %</b>. Butane 1,5/8,5 (densité 2), propane 2,2/9,5 (densité 1,53).</li><li>Odorisé au <b>THT</b>. Non toxique mais asphyxiant.</li><li>Gaz étalon de l'Altair 4X.</li></ul>`)
+  +fFin("COMIX : dangers des fumées","Chaudes, Opaques, Mobiles, Inflammables, Toxiques",`<div class="tbl"><table><tbody>
+   <tr><td><b>C</b> Chaudes</td><td ${W}>Plus elles sont chaudes, plus elles sont <b>légères</b> : elles montent et se <b>stratifient</b> dans le local.</td></tr>
+   <tr><td><b>O</b> Opaques</td><td ${W}>Plus elles sont chaudes, plus elles sont <b>sombres et opaques</b> (chargées en imbrûlés).</td></tr>
+   <tr><td><b>M</b> Mobiles</td><td ${W}>Plus elles sont chaudes, plus elles se dilatent et sortent vite du volume : la <b>vélocité</b>.</td></tr>
+   <tr><td><b>I</b> Inflammables</td><td ${W}>Selon leur plage d'inflammabilité et leur quantité : <b>inflammables, voire explosives</b>.</td></tr>
+   <tr><td><b>X</b> Toxiques</td><td ${W}>CO, cyanure d'hydrogène, benzène, acroléine, ammoniac, formaldéhyde, CO₂.</td></tr></tbody></table></div>
+   <p class="muted">Variante dans certains documents : COCMIX (Opaques/Claires).</p>`)
   +fFin("FGI","Inflammation des gaz d'incendie",`<ul><li>Fire Gas Ignition : fumées riches en imbrûlés qui s'enflamment au contact d'une source de chaleur.</li><li>Déclencheur : <b>apport d'énergie d'activation</b>. Possible avec des <b>fumées froides</b>.</li><li>Backdraft : apport de comburant. Flashover : rayonnement.</li></ul>`)
   +fFin("Frein de charge, ligne de vie, ligne guide","LSPCC et engagement",`<ul><li><b>Frein de charge</b> : huit descendeur, 2000 kg, <b>toujours en point fixe</b>, clé d'arrêt pour bloquer la corde.</li><li><b>Ligne de vie</b> = ligne guide + ligne personnelle. Un tuyau établi peut servir de ligne guide.</li><li><b>Ligne guide</b> : <b>50 à 60 m, Ø 6 à 8 mm</b>. 1 olive en 2e position = sortie, 3 olives = feu. Jusqu'à 3 dérivations.</li></ul>`)
   +fFin("Techniques de respiration sous ARI","Économie d'air",`<div class="tbl"><table><tbody><tr><td><b>Sauter une respiration</b></td><td ${W}>Inspirer profond, retenir, expirer lentement. 3-4/min</td></tr><tr><td><b>Intervalle respiratoire</b></td><td ${W}>5 s inspi, 5 s bloqué, 5 s expi, 5 s bloqué</td></tr><tr><td><b>Reilly</b></td><td ${W}>Expirer lentement en fredonnant. 2/min, ralentit le cœur</td></tr><tr><td><b>2/4</b></td><td ${W}>Inspirer 2 s, expirer 4 s</td></tr></tbody></table></div><p>Consommation : effort 90-100 l/min, moyenne 40-70, économie 10-12. Fuite : robinet 1/4 de tour, inspirer, fermer, retenir.</p>`);
@@ -2229,7 +2240,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!stack.le
 </script>
 
 <script>
-const APP_VERSION="2026.11.24-4";
+const APP_VERSION="2026.11.24-5";
 /* Vérifie version.json : si une nouvelle version est en ligne, recharge l'appli. */
 function checkVersion(){fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(!j||!j.version||j.version===APP_VERSION) return; let k="oc-up-"+j.version; try{if(sessionStorage.getItem(k)) return; sessionStorage.setItem(k,"1")}catch(e){return} fetch("./",{cache:"reload"}).catch(()=>{}).then(()=>fetch("index.html",{cache:"reload"}).catch(()=>{})).then(()=>location.reload())}).catch(()=>{})}
 setTimeout(checkVersion,3000);
