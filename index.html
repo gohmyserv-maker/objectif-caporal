@@ -40,7 +40,7 @@ main{padding-block:18px calc(var(--navh) + 32px + env(safe-area-inset-bottom,0px
 .screen{display:grid;gap:16px}
 /* barre basse */
 nav.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-nav.bar .wrap{display:grid;grid-template-columns:repeat(5,1fr);padding-inline:4px}
+nav.bar .wrap{display:grid;grid-template-columns:repeat(6,1fr);padding-inline:2px}
 nav.bar button{min-height:var(--navh);border:0;background:none;color:var(--muted);display:grid;justify-items:center;align-content:center;gap:3px;font:600 11.5px var(--body);letter-spacing:.02em;cursor:pointer;border-radius:10px;transition:background-color .12s}
 nav.bar button:active{background:var(--sunk)}
 nav.bar button[aria-current="page"]{color:var(--red-ink)}
@@ -466,6 +466,7 @@ nav.bar button{color:color-mix(in srgb,var(--fg) 70%,var(--muted))}
   <button data-r="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c2 3 5 5 5 9a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-8z"/></svg>Séance</button>
   <button data-r="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Programme</button>
   <button data-r="fiches"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></svg>Fiches</button>
+  <button data-r="final"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Final</button>
   <button data-r="train"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Entraîner</button>
   <button data-r="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>Réglages</button>
 </div></nav>
@@ -486,6 +487,7 @@ const MODS = [
  {id:"rsf", bloc:"Incendie", t:"Rideau stoppeur de fumées", src:"Référentiel chef d'équipe : fiche OPS n°065 et fiche technique matériel"},
  {id:"lspcc", bloc:"LSPCC", t:"LSPCC", src:"Référentiel chef d'équipe : module LSPCC (8 leçons) + GTO Sauvetages et mises en sécurité"},
  {id:"echm", bloc:"Sauvetage", t:"Échelles à main", src:"GTO Sauvetages et mises en sécurité : échelles à coulisse et à crochets"},
+ {id:"respi", bloc:"ARI", t:"Techniques de respiration sous ARI", src:"INC-FTO-07.3 Techniques de gestion de l'air et FTO 15 INC L'économie d'air (ENASIS)"},
  {id:"repli", bloc:"Sauvetage", t:"Repli et évacuation du personnel", src:"GDOD Engagement en milieu vicié 2025, FTO 204.10 et 204.11, fiche repli d'urgence, TASSS (ENASIS)"},
  {id:"sauv", bloc:"ARI", t:"ARI et sauvegarde opérationnelle", src:"Référentiel chef d'équipe : sauvegarde opérationnelle (mai 2024)"}
 ];
@@ -548,6 +550,13 @@ F.explo = `
 <ul><li>Mémoire interne : enregistre toutes les données et manipulations.</li><li>Alarme <b>simultanément vibrante, sonore et visuelle</b>.</li><li><b>Détecteur d'immobilité</b>.</li><li>Batterie : <b>24 h</b> d'autonomie.</li><li><b>Alarme manuelle</b> en cas de détresse.</li></ul>
 <p>Le choix du méthane comme gaz étalon renforce la sécurité du personnel, en raison de la valeur de sa LIE. En sous-oxygénation, la lecture explo n'est plus fiable.</p>
 <p>Au <b>déblai</b>, on peut le poser en station pour surveiller la toxicité et adapter les EPI (ARI).</p>
+<h3>Le méthane (CH₄), gaz naturel</h3>
+<div class="tbl"><table><thead><tr><th>Gaz</th><th>État</th><th>Densité</th><th>LIE / LSE</th></tr></thead><tbody>
+<tr><td><b>Méthane CH₄</b> (réseau GrDF)</td><td style="white-space:normal;font-family:inherit">Toujours gazeux</td><td class="num"><b>0,55</b> (plus léger)</td><td class="num"><b>5 % / 15 %</b></td></tr>
+<tr><td>Butane C₄H₁₀</td><td style="white-space:normal;font-family:inherit">Liquéfié (réservoir)</td><td class="num">2 (plus lourd)</td><td class="num">1,5 % / 8,5 %</td></tr>
+<tr><td>Propane C₃H₈</td><td style="white-space:normal;font-family:inherit">Liquéfié (réservoir)</td><td class="num">1,53 (plus lourd)</td><td class="num">2,2 % / 9,5 %</td></tr>
+</tbody></table></div>
+<ul><li>Le gaz naturel est un mélange composé <b>principalement de méthane</b>.</li><li>Inodore à l'état naturel : il est <b>odorisé au THT</b> (tétrahydrothiophène) avant distribution.</li><li>Plus léger que l'air : il monte et s'accumule en <b>partie haute</b> (faux plafonds, combles).</li><li>Inflammable et explosif entre <b>5 % et 15 %</b> dans l'air. Au-dessus de la LSE, le mélange est trop riche, mais <b>pas sûr</b> : une dilution le ramène dans la plage explosive.</li><li>Non toxique, mais <b>asphyxiant</b> à forte concentration (il chasse l'oxygène).</li><li>C'est le <b>gaz étalon</b> de l'Altair 4X en Haute-Saône.</li></ul>
 <h3>Le monoxyde de carbone</h3>
 <ul><li>Danger principal : <b>incolore et inodore</b>.</li><li><b>Toxique bien avant d'être explosif</b>. Mesure en ppm.</li><li>Émis par les dysfonctionnements de chauffage.</li><li>En intervention SAP, avoir <b>obligatoirement</b> sur soi l'<b>Altair 2X du VSAV</b>.</li><li>Feu de cheminée : Altair 4X à chaque changement de pièce.</li></ul>
 <div class="note">Seuils de l'Altair 2X du VSAV : à faire préciser par ton formateur.</div>`;
@@ -696,7 +705,16 @@ F.ech = `
 <h3>ETB-5 : établissements particuliers</h3>
 <ul><li><b>Lance mousse avec injecteur mobile</b> : le BAL alimente l'injecteur avec les bidons d'émulseur. Engin équipé du système Caméléon : mêmes règles que l'ETB-3.</li><li><b>Lance queue de paon</b> : mêmes règles que l'ETB-3, seul le matériel change. Chef BAT : la lance + 1 tuyau de 45 plié en Z. Équipier : 2 tuyaux de 45 pliés en Z.</li><li><b>Lance canon</b> : le BAT place la lance au point d'attaque désigné par le CA. Le BAL l'alimente (dévidoir, tuyaux en écheveaux ou couronne).</li></ul>
 <h3>ETB-6 : prolongation ou remplacement</h3>
-<ul><li>Décidée par le <b>CA en concertation avec le CE</b>.</li><li>Réalisée par l'équipier BAT ou par le BAL.</li><li>La <b>fermeture de l'arrivée d'eau est commandée par le chef d'équipe du binôme d'attaque</b> : c'est sa sécurité et celle de son équipier qui sont en jeu.</li></ul>`;
+<ul><li>Décidée par le <b>CA en concertation avec le CE</b>.</li><li>Réalisée par l'équipier BAT ou par le BAL.</li><li>La <b>fermeture de l'arrivée d'eau est commandée par le chef d'équipe du binôme d'attaque</b> : c'est sa sécurité et celle de son équipier qui sont en jeu.</li></ul>
+<h3>Remplacement d'un tuyau par l'équipier (FTO 6)</h3>
+<ul><li><b>Remplacement</b> : anomalie constatée (tuyau percé, demi-raccord défectueux). <b>Prolongement</b> : ajuster la longueur ou déplacer l'établissement.</li><li>Personnel : <b>1 binôme</b> (BAT). La répartition du matériel est décidée par le CA.</li><li>Ordre préparatoire : <b>« Pour le remplacement du tuyau n°…, en avant ou en reconnaissance »</b>.</li><li>Pression maintenue à l'engin <b>sur la division</b>, ou utilisation d'un <b>étrangleur</b>.</li></ul>
+<div class="tbl"><table><thead><tr><th>Étape</th><th>Équipier BAT</th><th>Chef d'équipe BAT</th></tr></thead><tbody>
+<tr><td class="num">1</td><td style="white-space:normal;font-family:inherit">Déroule un tuyau neuf <b>à côté</b> du tuyau à remplacer</td><td style="white-space:normal;font-family:inherit">Poursuit l'attaque pendant la préparation</td></tr>
+<tr><td class="num">2</td><td style="white-space:normal;font-family:inherit">Se rend à la division et <b>prévient le chef d'équipe</b> de la coupure d'eau</td><td style="white-space:normal;font-family:inherit">Est prévenu, se met en sécurité, <b>commande la fermeture</b></td></tr>
+<tr><td class="num">3</td><td style="white-space:normal;font-family:inherit">Vérifie que le tuyau <b>n'est plus sous pression</b>, remplace le tuyau</td><td style="white-space:normal;font-family:inherit">Reste en position, sans eau</td></tr>
+<tr><td class="num">4</td><td style="white-space:normal;font-family:inherit"><b>Rouvre la division</b> sur ordre du chef d'équipe</td><td style="white-space:normal;font-family:inherit">Ordonne la réouverture, contrôle l'établissement remis en eau</td></tr>
+</tbody></table></div>
+<div class="note">Danger : pendant la coupure, le binôme reste <b>exposé au feu</b> sans protection hydraulique. D'où la fermeture commandée par le chef d'équipe.</div>`;
 
 F.ext = `
 <h3>Les types de jet</h3>
@@ -899,12 +917,17 @@ F.lspcc = `
 F.echm = `
 <h3>Les 3 types d'échelles à main</h3>
 <ul><li><b>Échelle à coulisse 2 plans</b> (grand modèle sur l'engin).</li><li><b>Échelle 3 plans</b>.</li><li><b>Échelle à crochets</b>.</li></ul>
-<p>Normes : échelles portables pour services d'incendie, <b>NF EN 1147</b>. Valeurs exactes : lire les inscriptions sur les montants.</p>
-<div class="tbl"><table><thead><tr><th>Caractéristique</th><th>Coulisse</th><th>Crochets</th></tr></thead><tbody>
-<tr><td>Longueur</td><td class="num">Repliée 5,00 m maxi, développée 8,10 m mini</td><td class="num">4,20 m mini</td></tr>
-<tr><td>Largeur</td><td class="num">0,30 m mini</td><td class="num">0,17 m mini</td></tr>
-<tr><td>Poids</td><td class="num">45 kg maxi</td><td class="num">15 kg maxi</td></tr>
+<h3>Tableau complet des échelles</h3>
+<div class="tbl"><table><thead><tr><th></th><th>Coulisse 2 plans</th><th>Coulisse 3 plans</th><th>Crochets</th></tr></thead><tbody>
+<tr><td><b>Norme NIT 331</b></td><td style="white-space:normal;font-family:inherit">Repliée 5,00 m maxi, développée 8,10 m mini, largeur 0,30 m mini, <b>45 kg maxi</b></td><td style="white-space:normal;font-family:inherit">Pas de valeur relevée</td><td style="white-space:normal;font-family:inherit">4,20 m mini, largeur 0,17 m mini, <b>15 kg maxi</b></td></tr>
+<tr><td>Exemple de modèle pompier</td><td style="white-space:normal;font-family:inherit">Grand modèle : 5 m repliée, 9 m déployée, 34 kg (2 × 19 échelons)</td><td style="white-space:normal;font-family:inherit">Très grand modèle : 5,7 m repliée, 14,6 m déployée, 85 kg (3 × 19 échelons)</td><td style="white-space:normal;font-family:inherit">Lire les montants</td></tr>
+<tr><td>Accès</td><td style="white-space:normal;font-family:inherit">1er et 2e étage</td><td style="white-space:normal;font-family:inherit">Plus haut que la 2 plans (selon le modèle)</td><td style="white-space:normal;font-family:inherit">Étage par étage, de balcon en balcon</td></tr>
+<tr><td>Charge</td><td style="white-space:normal;font-family:inherit">1 personne par plan, sauf sauvetage (marquage 2 ou 3 personnes : 2 sauveteurs + 1 victime)</td><td style="white-space:normal;font-family:inherit">Idem, selon le marquage</td><td style="white-space:normal;font-family:inherit">1 SP, + 1 personne en sauvetage</td></tr>
+<tr><td>Piétage</td><td style="white-space:normal;font-family:inherit">1/3 de la longueur développée, 1 pas par étage, test du coude</td><td style="white-space:normal;font-family:inherit">Idem</td><td style="white-space:normal;font-family:inherit">Suspendue aux crochets ou sur ses pics</td></tr>
+<tr><td>Itinéraire de secours</td><td style="white-space:normal;font-family:inherit">Grand plan contre la façade, 4 grands pas (1er), 5 (2e)</td><td style="white-space:normal;font-family:inherit">Selon le modèle</td><td style="white-space:normal;font-family:inherit">Itinéraire de repli en toiture</td></tr>
+<tr><td>Normes</td><td style="white-space:normal;font-family:inherit" colspan="3">EN 1147 (échelles portables pour services d'incendie) et NIT 331. Valeurs réelles : <b>inscriptions sur les montants</b>.</td></tr>
 </tbody></table></div>
+<div class="note">Les valeurs de la ligne « Norme » sont les limites de la NIT 331. Les exemples sont des modèles du commerce : tes engins peuvent avoir d'autres échelles.</div>
 <h3>Missions</h3>
 <ul><li>Sauvetage.</li><li>Reconnaissance.</li><li>Mise en place d'un établissement.</li><li>Itinéraire de secours pour le personnel.</li></ul>
 <p>Avant de dresser : <b>observer et analyser</b> la mission (sauvetage, reconnaissance, établissement, itinéraire de secours). Elle décide de la position.</p>
@@ -955,6 +978,32 @@ F.repli = `
 <ul><li><b>Assistance en air</b> : couper l'alarme de la balise, vérifier l'air dans le masque, lire le manomètre, brancher le masque de l'équipier sur sa <b>sortie de secours</b>, cagoule de sauvetage si besoin.</li><li><b>Mise sur l'échelle pieds en avant</b> : <b>dernier recours</b>, ARI retiré avant, pied à 4 grands pas maxi (1er) ou 5 (2e), échelle amarrée ou calée.</li><li><b>Déshabillage</b> du sauveteur inconscient : <b>2 personnes mini</b>. Tête : casque, bretelles, masque (débrancher le SAD), cagoule, manches, « prêt ». Jambes : sangle ventrale, gants, veste, bottes, pantalon, tire au « prêt ».</li></ul>
 <h3>Auto-sauvetage</h3>
 <ul><li>Évaluer : le problème, la stabilité, l'air restant, le besoin d'aide. Puis tenter l'évacuation <b>ou</b> économiser l'air et attendre les secours.</li><li><b>Ligne guide</b> : 50 à 60 m, Ø 6 à 8 mm. <b>1 olive</b> en 2e position = direction de la <b>sortie</b>, <b>3 olives</b> = direction du <b>feu</b>. Un tuyau établi peut servir de ligne guide.</li><li><b>Passage étroit</b> : épaules environ 36 cm. Plongeon, profil réduit (bouteille décalée derrière l'épaule), retrait de l'ARI en <b>dernier recours</b> en gardant le robinet accessible.</li><li><b>Enchevêtrement</b> : s'arrêter, reculer pour détendre les fils, passer dessous sur le côté gauche, bras droit en chasse-neige.</li><li><b>Position d'attente à la fenêtre</b> : exposer un bras et une jambe à la chaleur, jamais la tête ni le tronc.</li><li>Balise (BSD) : détecteur d'immobilité, alarme sonore et lumineuse, déclenchement manuel pour demander de l'aide.</li></ul>`;
+F.respi = `
+<h3>Pourquoi économiser l'air</h3>
+<ul><li>Principe du <b>sablier</b> : le temps que met la bouteille à se vider est le temps qu'il te reste si tu ne rejoins pas la sortie.</li><li>En attendant le binôme de sécurité, contrôler sa respiration devient la <b>priorité absolue</b>.</li><li>L'efficacité varie sur le terrain à cause du <b>stress</b>.</li></ul>
+<h3>Consommation d'air</h3>
+<div class="tbl"><table><thead><tr><th>Situation</th><th>Consommation</th></tr></thead><tbody>
+<tr><td>Effort intense</td><td class="num">jusqu'à <b>90 à 100 l/min</b></td></tr>
+<tr><td>Porteur ARI moyen</td><td class="num"><b>40 à 70 l/min</b></td></tr>
+<tr><td>Mode économie</td><td class="num">jusqu'à <b>10 à 12 l/min</b></td></tr>
+</tbody></table></div>
+<p>Avant de choisir une technique : évaluer si l'on est en mode <b>effort intense</b> ou <b>économie d'énergie</b>.</p>
+<h3>Les 4 techniques de respiration</h3>
+<div class="tbl"><table><thead><tr><th>Technique</th><th>Déroulé</th><th>Rythme</th></tr></thead><tbody>
+<tr><td><b>Sauter une respiration</b></td><td>Inspirer profondément, retenir jusqu'à sa limite, expirer lentement, recommencer. Seul ou en binôme.</td><td class="num">3 à 4 respirations/min. La plus simple, pas la plus efficace.</td></tr>
+<tr><td><b>Intervalle respiratoire</b></td><td>Inspirer 5 s, bloquer 5 s, expirer 5 s, bloquer 5 s, recommencer.</td><td class="num">Cycle de 20 s, environ 3 respirations/min.</td></tr>
+<tr><td><b>Méthode Reilly</b></td><td>Inspirer normalement, expirer lentement <b>en fredonnant</b>, recommencer.</td><td class="num">Environ 2 respirations/min. Parmi les plus efficaces, <b>ralentit nettement le cœur</b>.</td></tr>
+<tr><td><b>Méthode 2/4</b></td><td>Inspirer en 2 s, expirer en 4 s, recommencer.</td><td class="num">Expiration deux fois plus longue que l'inspiration.</td></tr>
+</tbody></table></div>
+<h3>Quand les utiliser</h3>
+<ul><li><b>Dès le masque capelé</b>, pour augmenter l'autonomie et mener la mission.</li><li>En cas de <b>malaise</b>, pour récupérer ses capacités.</li><li>Indispensable pour sortir d'une <b>situation critique imprévue</b> et/ou attendre une équipe de sauvetage.</li></ul>
+<h3>Gestion d'une fuite (matériel endommagé)</h3>
+<p>Ce n'est <b>pas</b> une technique d'économie : uniquement si masque, tuyau ou soupape à la demande sont endommagés.</p>
+<ol><li>Ouvrir le robinet de la bouteille d'<b>un quart de tour</b> et inspirer.</li><li>Fermer le robinet et retenir sa respiration jusqu'à sa limite.</li><li>Expirer lentement, recommencer.</li></ol>
+<p>Certains appareils ont un bouton sur la soupape à la demande qui coupe l'arrivée d'air au masque : plus simple à utiliser que le robinet.</p>
+<h3>S'entraîner</h3>
+<ul><li>Tester les techniques avant, pour trouver celle qui te convient.</li><li>S'entraîner régulièrement, <b>avec et sans effort physique</b>.</li><li>Une bouteille vide ne laisse aucune survie possible dans l'espace mort du masque.</li></ul>`;
+
 
 
 
@@ -1287,6 +1336,53 @@ const Q = [
 ["lspcc","Durée de vie maxi de la corde (guide 1999) :",["7 ans","2 ans","15 ans","Illimitée"],0,"Année repérée par un fil de couleur dans la gaine."],
 ["lspcc","Lot présentant un défaut de réforme :",["Retiré du service jusqu'au contrôle par un responsable","Utilisé en entraînement","Remis dans l'engin","Réparé sur place"],0,""],
 ["lspcc","Le connecteur demi-lune du harnais peut être remplacé par :",["Jamais par un autre modèle","Un mousqueton à vis","Une cordelette","Un anneau cousu"],0,""],
+["respi","Consommation d'air d'un porteur ARI moyen :",["40 à 70 l/min","10 à 12 l/min","90 à 100 l/min","150 l/min"],0,"Effort intense : jusqu'à 90-100 l/min. Économie : 10-12 l/min."],
+["respi","En mode économie, la consommation peut descendre à :",["10 à 12 l/min","30 l/min","40 l/min","2 l/min"],0,""],
+["respi","Méthode Reilly :",["Inspirer normalement, expirer lentement en fredonnant","Inspirer 2 s, expirer 4 s","Inspirer 5 s, bloquer 5 s, expirer 5 s, bloquer 5 s","Retenir sa respiration jusqu'à sa limite"],0,"Environ 2 respirations/min, ralentit le cœur."],
+["respi","Intervalle respiratoire :",["Inspirer 5 s, bloquer 5 s, expirer 5 s, bloquer 5 s","Inspirer 2 s, expirer 4 s","Fredonner à l'expiration","Respirer normalement"],0,"Cycle de 20 s, environ 3 respirations/min."],
+["respi","Méthode 2/4 :",["Inspirer en 2 s, expirer en 4 s","Inspirer en 4 s, expirer en 2 s","2 respirations toutes les 4 min","Bloquer 2 s, expirer 4 s"],0,""],
+["respi","La technique la plus simple pour débuter, mais pas la plus efficace :",["Sauter une respiration","Méthode Reilly","Intervalle respiratoire","Méthode 2/4"],0,"3 à 4 respirations/min."],
+["respi","Laquelle ralentit nettement la fréquence cardiaque ?",["Méthode Reilly","Sauter une respiration","Gestion de fuite","Respiration rapide"],0,""],
+["respi","Quand utiliser les techniques de respiration ?",["Dès le masque capelé, en cas de malaise, en situation critique","Uniquement bouteille vide","Seulement à l'entraînement","Jamais en intervention"],0,""],
+["respi","Masque endommagé : gestion de fuite",["Ouvrir le robinet 1/4 de tour, inspirer, fermer, retenir, expirer lentement","Retirer le masque","Respirer plus vite","Bloquer la SAD en continu"],0,"Ce n'est pas une technique d'économie d'air."],
+["respi","Principe du sablier sous ARI :",["Le temps de vidage de la bouteille = le temps qu'il te reste si tu ne sors pas","La réserve dure toujours 10 min","On peut survivre dans l'espace mort","Le sifflet sonne à mi-bouteille"],0,""],
+["echm","Grand modèle de coulisse 2 plans du commerce, poids :",["Environ 34 kg","Environ 85 kg","Environ 8 kg","Environ 60 kg"],0,"Très grand modèle 3 plans : environ 85 kg. Norme coulisse : 45 kg maxi."],
+["echm","Marquage d'une coulisse pompier (EN 1147) : en sauvetage elle peut porter...",["2 ou 3 personnes selon le marquage (2 sauveteurs + 1 victime)","1 seule personne","5 personnes","Pas de limite"],0,"Hors sauvetage : 1 personne par plan."],
+["echm","Où lire les caractéristiques réelles d'une échelle ?",["Sur les inscriptions des montants","Dans le carnet de l'engin uniquement","Sur la plaque d'immatriculation","Nulle part"],0,""],
+["explo","Densité du méthane (CH₄) :",["0,55, plus léger que l'air","2, plus lourd que l'air","1,53","1, comme l'air"],0,"Il s'accumule en partie haute."],
+["explo","LIE et LSE du méthane :",["5 % et 15 %","1,5 % et 8,5 %","2,2 % et 9,5 %","12 % et 74 %"],0,"Butane : 1,5/8,5. Propane : 2,2/9,5."],
+["explo","Avec quoi le gaz naturel est-il odorisé ?",["Le THT (tétrahydrothiophène)","Le CO","Le propane","Rien, il sent naturellement"],0,""],
+["explo","Le méthane du réseau GrDF est stocké et distribué :",["Toujours sous forme gazeuse","Sous forme liquéfiée","En bouteilles de 13 kg","Sous forme solide"],0,"Butane et propane : liquéfiés en réservoir."],
+["explo","Fuite de méthane dans un logement : où le gaz s'accumule-t-il ?",["En partie haute (faux plafonds, combles)","En partie basse (sous-sols)","Au niveau du sol","Uniformément"],0,""],
+["explo","Le méthane est-il toxique ?",["Non, mais asphyxiant à forte concentration","Oui, très toxique","Seulement au-dessus de 50 ppm","Il est corrosif"],0,""],
+["ech","Remplacement d'un tuyau : que fait d'abord l'équipier ?",["Il déroule un tuyau neuf à côté du tuyau à remplacer","Il coupe l'eau","Il retire le tuyau percé","Il prévient le CODIS"],0,""],
+["ech","Remplacement d'un tuyau : qui l'équipier prévient-il de la coupure d'eau ?",["Le chef d'équipe du binôme d'attaque","Le CODIS","Le BAL seulement","Personne"],0,""],
+["ech","Avant de déconnecter le tuyau à remplacer, l'équipier vérifie :",["Qu'il n'est plus sous pression","Sa couleur","Sa longueur","Le débit de la lance"],0,""],
+["ech","Qui ordonne la réouverture de la division après remplacement ?",["Le chef d'équipe","L'équipier seul","Le conducteur seul","Le COS"],0,"Puis on contrôle l'établissement remis en eau."],
+["ech","Quel matériel permet de couper l'eau sur un tuyau sans fermer l'engin ?",["Un étrangleur","Une commande","Un mousqueton","Une clé tricoise"],0,"Ou maintien de pression à l'engin sur la division."],
+["ech","Principal danger pendant un remplacement de tuyau :",["Le binôme reste exposé au feu sans eau","Le tuyau neuf est trop long","La lance se bouche","Le conducteur est seul"],0,""],
+["echm","Échelle à coulisse : longueur repliée maximale (norme) ?",["5,00 m","3,50 m","6,50 m","8,10 m"],0,"Repliée 5,00 m maxi, développée 8,10 m mini."],
+["echm","Échelle à coulisse : poids maximal (norme) ?",["45 kg","15 kg","30 kg","60 kg"],0,"Échelle à crochets : 15 kg maxi, 4,20 m mini."],
+["echm","Échelle à crochets : longueur minimale (norme) ?",["4,20 m","2,50 m","5,00 m","8,10 m"],0,""],
+["explo","La croix de Saint-André (X noir sur fond orange) signalait :",["Un produit nocif (Xn) ou irritant (Xi)","Un produit explosif","Un produit radioactif","Un gaz sous pression"],0,"Ancien symbole, remplacé dans le règlement CLP par le point d'exclamation."],
+["explo","Sur la plaque orange, le nombre du haut est :",["Le code danger","Le numéro ONU de la matière","Le numéro du transporteur","La quantité transportée"],0,"En bas : le numéro ONU, qui identifie la matière."],
+["explo","Un X devant le code danger signifie :",["La matière réagit dangereusement avec l'eau : pas d'eau, pas de mousse","Matière toxique","Matière radioactive","Danger nul"],0,"La mousse contient de l'eau, elle est donc proscrite aussi."],
+["explo","Un chiffre doublé dans le code danger (ex. 33) indique :",["Une intensification du danger","Deux matières mélangées","Une erreur d'étiquetage","Un danger réduit"],0,""],
+["chem","Feu de cheminée : quel appareil emporter à chaque changement de pièce ?",["L'Altair 4X (CO)","La caméra thermique uniquement","Le LSPCC","Le DSA"],0,""],
+["chem","Feu de cheminée : hérisson dans un conduit inox",["Interdit","Obligatoire","Autorisé avec de l'eau","Autorisé si le conduit est froid"],0,""],
+["chem","Feu de cheminée : trouée d'extinction dans un boisseau",["Environ 5 cm, juste au-dessus des matériaux en ignition","20 cm sous le coude","Au niveau du débouché","Dans la trappe de ramonage"],0,"Trouée de dégagement : juste au-dessous des coudes et dévoiements."],
+["ech","Division d'attaque (DAT) : matériel porté",["CE : 1 tuyau de 70 + la division, Eq : 2 tuyaux de 70","CE : 2 tuyaux de 70, Eq : la division","CE et Eq : 1 tuyau de 45 chacun","CE : la division seule, Eq : 3 tuyaux de 70"],0,"D'après tes notes de formation."],
+["ech","Division d'attaque (DAT) : qui pose et amarre la division ?",["Le CE","L'équipier","Le conducteur","Le CA"],0,"Puis CE et équipier vont à la prise d'eau en interconnectant à chaque demi-raccord."],
+["ech","Un demi-raccord symétrique de 45 se raccorde :",["Sur un autre demi-raccord de 45, sans sens, par un quart de tour","Uniquement sur un raccord de 70","Par vissage","Avec une réduction obligatoire"],0,"Pour passer du 70 au 45 : une réduction. À confirmer avec ton formateur."],
+["ech","Sens d'alimentation, cheminement connu : on établit...",["De la prise d'eau vers le point d'attaque","Du point d'attaque vers la prise d'eau","Toujours depuis la DAT","Sans tuyau de réserve"],0,"Cheminement inconnu : on reconnaît d'abord, on part du point d'attaque. À confirmer avec ton formateur."],
+["risque","FGI signifie :",["Inflammation des gaz d'incendie (Fire Gas Ignition)","Feu généralisé instantané","Flashover à gaz inerte","Fumées à grande intensité"],0,""],
+["lspcc","Le frein de charge (huit descendeur) s'utilise :",["Toujours en point fixe","Sur le harnais du sauveteur en descente libre","Seul, sans mousqueton","Uniquement en remontée"],0,"Clé d'arrêt pour bloquer la corde. Résistance 2000 kg."],
+["repli","Ligne guide : longueur et diamètre ?",["50 à 60 m, Ø 6 à 8 mm","20 m, Ø 12 mm","30 m, Ø 7 mm","100 m, Ø 10 mm"],0,"1 olive = sortie, 3 olives = feu."],
+["repli","La ligne de vie, c'est :",["La ligne guide + la ligne personnelle","Le tuyau d'alimentation seul","La corde du LSPCC","La commande de 30 m"],0,"Un tuyau établi peut aussi servir de ligne guide."],
+["explo","Quels gaz mesure l'Altair 4X ?",["EXPLO (% LIE), O₂, CO et H₂S","CO, CO₂, NH₃ et O₂","Méthane, butane, propane et CO","O₂, CO₂, H₂ et CO"],0,"4 gaz avec 3 cellules."],
+["explo","Altair 4X : en quelle unité s'affiche la mesure EXPLO ?",["% de la LIE","ppm","% du volume d'air","mg/m³"],0,"CO et H₂S en ppm, O₂ en %."],
+["explo","Altair 4X : CO et H₂S sont mesurés par...",["Une seule double cellule toxique","Deux cellules séparées","La cellule catalytique","La cellule O₂"],0,""],
+["explo","Lequel de ces gaz l'Altair 4X ne mesure PAS ?",["Le CO₂","Le CO","L'H₂S","L'O₂"],0,""],
 ].map((r,i)=>({id:"q"+i,m:r[0],q:r[1],o:r[2],a:r[3],e:r[4]}));
 
 /* ================= ORAL ================= */
@@ -1484,6 +1580,11 @@ ILL.repli=`<svg viewBox="0 0 120 120" aria-hidden="true">
 <path d="M66 70 H104 M88 54 L104 70 L88 86" fill="none" stroke="#2fbf71" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M14 104h92" stroke="#f2c200" stroke-width="4"/></svg>`;
 
+ILL.respi=`<svg viewBox="0 0 120 120" aria-hidden="true">
+<rect x="44" y="40" width="32" height="62" rx="14" fill="#c9ced6" stroke="#1b2430" stroke-width="3"/><rect x="50" y="26" width="20" height="16" rx="4" fill="#1b2430"/>
+<path d="M14 30c10-8 20 8 30 0M14 50c10-8 20 8 30 0M76 30c10-8 20 8 30 0M76 50c10-8 20 8 30 0" fill="none" stroke="#2f80ed" stroke-width="4" stroke-linecap="round"/>
+<path d="M50 70h20" stroke="#1b2430" stroke-width="4"/></svg>`;
+
 /* ----- illustrations des étapes de séance ----- */
 ILL.t_learn=`<svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 30 C34 22 50 24 60 32 C70 24 86 22 106 30 V96 C86 88 70 90 60 98 C50 90 34 88 14 96 Z" fill="#e9edf1"/><path d="M60 32 V98" stroke="#9aa3ad" stroke-width="3"/><path d="M24 44h26M24 54h26M24 64h20M70 44h26M70 54h26M70 64h18" stroke="#9aa3ad" stroke-width="3" stroke-linecap="round"/><path d="M76 78 L86 88 L102 68" fill="none" stroke="#e63322" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ILL.t_cards=`<svg viewBox="0 0 120 120" aria-hidden="true"><rect x="30" y="26" width="58" height="76" rx="8" fill="#2a3644" transform="rotate(-10 59 64)"/><rect x="36" y="20" width="58" height="76" rx="8" fill="#e9edf1"/><path d="M48 44h34M48 54h26" stroke="#9aa3ad" stroke-width="4" stroke-linecap="round"/><path d="M50 74 l8 8 l16 -18" fill="none" stroke="#3fbf7f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M100 30a24 24 0 0 1 4 30" fill="none" stroke="#f2c200" stroke-width="4" stroke-linecap="round"/><path d="M98 56 l6 6 l4 -8" fill="none" stroke="#f2c200" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -1561,14 +1662,15 @@ const MOD_ICON={
  lspcc:'<path d="M9 17a4 4 0 1 1 0-8h1"/><path d="M15 7a4 4 0 1 1 0 8h-1"/><path d="M8 12h8"/>',
  sauv:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><circle cx="12" cy="11" r="3"/>',
  echm:'<path d="M7 2v20M17 2v20M7 6h10M7 10h10M7 14h10M7 18h10"/>',
- repli:'<path d="M10 17l-5-5 5-5M5 12h11a4 4 0 0 1 4 4v4"/>'};
+ repli:'<path d="M10 17l-5-5 5-5M5 12h11a4 4 0 0 1 4 4v4"/>',
+ respi:'<path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h7"/>'};
 const MOD_COLOR={Commandement:"var(--c-cmd)",Incendie:"var(--c-inc)",LSPCC:"var(--c-lspcc)",Sauvetage:"var(--c-lspcc)",ARI:"var(--c-ari)"};
 const modIcon=id=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${MOD_ICON[id]||""}</svg>`;
 const modCol=id=>MOD_COLOR[MODS.find(m=>m.id===id).bloc];
 const CHV='<svg class="chv" viewBox="0 0 18 12" aria-hidden="true"><path d="M1 1l8 6 8-6v4l-8 6-8-6z" fill="currentColor"/></svg>';
 
 /* ================= DÉCOUPAGE DU CONTENU EN NOTIONS ================= */
-const ORDER=["cmd","sauv","risque","ext","ech","lspcc","echm","repli","explo","rsf","vl","chem","cam"];
+const ORDER=["cmd","sauv","risque","ext","ech","lspcc","echm","repli","respi","explo","rsf","vl","chem","cam"];
 const CHUNKS=[];
 ORDER.forEach(m=>{
   const parts=F[m].split(/(?=<h3>)/); let intro="";
@@ -1729,8 +1831,47 @@ function render(){SDAY=null;
   document.body.classList.remove("session"); $("#back").hidden=true; $("#tag").textContent="Formylia 360"; $("#ttl").textContent="Objectif Caporal";
   document.querySelectorAll("nav.bar button").forEach(b=>b.toggleAttribute("aria-current",b.dataset.r===route));
   document.querySelectorAll("nav.bar button").forEach(b=>{if(b.dataset.r===route) b.setAttribute("aria-current","page")});
-  ({today:vToday,plan:vPlan,fiches:vFiches,train:vTrain,settings:vSettings})[route]();
+  ({today:vToday,plan:vPlan,fiches:vFiches,train:vTrain,settings:vSettings,final:vFinal})[route]();
   anim(fromSession?"in-back":"in-fade"); fromSession=false;
+}
+
+
+/* ================= ÉCRAN RÉVISION FINALE ================= */
+const FINAL_START="Consommation d'air d'un porteur ARI moyen :";
+const FINAL_EXTRA=["Altair 4X SDIS 70","Quel est l'élément déclencheur d'une FGI","ETB-6"];
+function finalPool(){const i=Q.findIndex(x=>x.q===FINAL_START); return Q.filter((x,k)=>(i>=0&&k>=i)||FINAL_EXTRA.some(p=>x.q.startsWith(p)))}
+function fFin(t,sub,body){return `<details class="fiche"><summary><span class="mico ill">${ILL.t_oral}</span><span><span class="t">${t}</span><span class="muted" style="font-size:14px">${sub}</span></span><span class="pct"></span></summary><div class="fbody">${body}</div></details>`}
+const W='style="white-space:normal;font-family:inherit"';
+function vFinal(){
+  const pool=finalPool();
+  $("#view").innerHTML=`<div><h2>${CHV}Révision finale</h2><p class="muted">Tous les points de ta liste, en un seul endroit, avec un QCM dédié.</p></div>
+  <div class="steps"><button class="step" id="fq"><span class="ic ill">${ILL.t_quiz}</span><span><span class="t">QCM révision finale</span><span class="d">Toutes les questions de ta liste</span></span><span class="go">${pool.length} q.</span></button>
+  <button class="step" id="fq20"><span class="ic ill">${ILL.t_quiz}</span><span><span class="t">QCM rapide</span><span class="d">20 questions au hasard</span></span><span class="go">20 q.</span></button></div>`
+  +fFin("Échelles : tailles et poids","Coulisse 2 et 3 plans, crochets",`<div class="tbl"><table><thead><tr><th></th><th>Coulisse 2 plans</th><th>Coulisse 3 plans</th><th>Crochets</th></tr></thead><tbody>
+   <tr><td><b>Norme</b></td><td ${W}>Repliée 5,00 m maxi, développée 8,10 m mini, <b>45 kg maxi</b></td><td ${W}>Pas de valeur relevée</td><td ${W}>4,20 m mini, <b>15 kg maxi</b></td></tr>
+   <tr><td>Exemple</td><td ${W}>5 m / 9 m, 34 kg</td><td ${W}>5,7 m / 14,6 m, 85 kg</td><td ${W}>Lire les montants</td></tr>
+   <tr><td>Accès</td><td ${W}>1er et 2e étage</td><td ${W}>Plus haut, selon modèle</td><td ${W}>Étage par étage</td></tr>
+   <tr><td>Charge</td><td ${W}>1 par plan, sauf sauvetage (2 ou 3 personnes selon marquage)</td><td ${W}>Idem</td><td ${W}>1 SP + 1 en sauvetage</td></tr>
+   <tr><td>Piétage</td><td ${W}>1/3 de la longueur, 1 pas par étage, test du coude</td><td ${W}>Idem</td><td ${W}>Sur crochets ou pics</td></tr>
+   <tr><td>Itinéraire de secours</td><td ${W}>Grand plan contre façade, 4 grands pas (1er), 5 (2e)</td><td ${W}>Selon modèle</td><td ${W}>Repli en toiture</td></tr></tbody></table></div><p class="muted">Normes EN 1147 et NIT 331. Valeurs réelles : inscriptions sur les montants.</p>`)
+  +fFin("Symbole toxicologique et plaque orange","Croix de Saint-André, code danger, X",`<ul><li><b>Croix de Saint-André</b> (X noir sur fond orange) : ancien symbole <b>nocif (Xn) ou irritant (Xi)</b>, remplacé dans le règlement CLP par le point d'exclamation. Tête de mort = toxique.</li></ul>
+   <div class="tbl"><table><tbody><tr><td><b>Nombre du haut</b></td><td ${W}>Code danger</td></tr><tr><td><b>Nombre du bas</b></td><td ${W}>Numéro ONU : identifie la matière</td></tr><tr><td><b>X devant</b></td><td ${W}>Réagit dangereusement avec l'eau : <b>ni eau, ni mousse</b></td></tr><tr><td><b>Chiffre doublé</b></td><td ${W}>Intensification du danger (33 = liquide très inflammable)</td></tr></tbody></table></div>
+   <p>1er chiffre : 2 gaz, 3 liquide inflammable, 4 solide inflammable, 5 comburant, 6 toxique, 7 radioactif, 8 corrosif, 9 danger divers. 0 = pas de danger secondaire.</p>`)
+  +fFin("Feu de cheminée","Risques, extinction, trouées, messages",`<ul><li>Altair 4X (CO) à <b>chaque changement de pièce</b>, caméra à chaque étage.</li><li>4 modes : étouffement (couper le tirage), dispersion du foyer, refroidissement-étouffement (peu d'eau, trappe refermée), dispersion dans le conduit (cannes, hérisson).</li><li><b>Hérisson interdit</b> dans un conduit inox.</li><li>Trouée d'<b>extinction</b> : environ 5 cm, juste au-dessus des matériaux en ignition. Trouée de <b>dégagement</b> : juste au-dessous des coudes et dévoiements.</li><li>Ne jamais dire « feu de cheminée de faible importance » ni « moyens habituels ».</li></ul>`)
+  +fFin("DAT, demi-raccord 45, sens d'alimentation","Établissements",`<ul><li><b>DAT</b> : CE porte <b>1 tuyau de 70 + la division</b>, équipier <b>2 tuyaux de 70</b> (tes notes). Le CE pose et amarre la division, puis CE et équipier remontent vers la prise d'eau en connectant à chaque demi-raccord.</li><li><b>Demi-raccord symétrique de 45</b> : se raccorde sans sens sur un autre 45 par un quart de tour. Du 70 au 45 : une réduction.</li><li><b>Sens d'alimentation</b> : cheminement connu, de la prise d'eau vers le point d'attaque. Inconnu : reconnaissance d'abord, on part du point d'attaque.</li></ul><div class="note">Demi-raccord et sens d'alimentation : à confirmer avec ton formateur.</div>`)
+  +fFin("Remplacement de tuyau par l'équipier","ETB-6, FTO 6",`<ol><li>L'équipier déroule un tuyau neuf <b>à côté</b> du tuyau à remplacer (le chef poursuit l'attaque).</li><li>Il va à la division et <b>prévient le chef d'équipe</b> de la coupure. La fermeture est commandée par le chef d'équipe.</li><li>Il vérifie que le tuyau <b>n'est plus sous pression</b> et le remplace.</li><li>Il <b>rouvre la division sur ordre</b> du chef d'équipe, qui contrôle l'établissement remis en eau.</li></ol><p>Pression maintenue à l'engin sur la division, ou <b>étrangleur</b>. Danger : binôme exposé au feu sans eau.</p>`)
+  +fFin("Altair 4X","Les 4 gaz mesurés et les seuils SDIS 70",`<div class="tbl"><table><thead><tr><th>Gaz mesuré</th><th>Cellule</th><th>Unité</th><th>Danger</th></tr></thead><tbody>
+<tr><td><b>EXPLO</b> (gaz inflammables, étalon méthane)</td><td ${W}>Catalytique</td><td class="num">% LIE</td><td ${W}>Explosion</td></tr>
+<tr><td><b>O₂</b> oxygène</td><td ${W}>Électrochimique</td><td class="num">% vol.</td><td ${W}>Asphyxie (bas) ou suroxygénation (haut)</td></tr>
+<tr><td><b>CO</b> monoxyde de carbone</td><td ${W}>Double cellule toxique</td><td class="num">ppm</td><td ${W}>Intoxication, incolore et inodore</td></tr>
+<tr><td><b>H₂S</b> hydrogène sulfuré</td><td ${W}>Double cellule toxique</td><td class="num">ppm</td><td ${W}>Intoxication (odeur d'œuf pourri, puis le nez ne la sent plus)</td></tr>
+</tbody></table></div><p><b>4 gaz avec 3 cellules</b> : la double cellule toxique mesure le CO et l'H₂S.</p><div class="tbl"><table><thead><tr><th>Gaz</th><th>Basse</th><th>Haute</th></tr></thead><tbody><tr><td>EXPLO (% LIE)</td><td class="num">20</td><td class="num">40</td></tr><tr><td>O₂ (%)</td><td class="num">19,5</td><td class="num">22</td></tr><tr><td>CO (ppm)</td><td class="num">50</td><td class="num">200</td></tr><tr><td>H₂S (ppm)</td><td class="num">5</td><td class="num">10</td></tr></tbody></table></div><p>3 cellules pour 4 gaz, étalonné au méthane, alarme vibrante + sonore + visuelle, détecteur d'immobilité, alarme manuelle, 24 h de batterie.</p>`)
+  +fFin("Méthane CH₄","Gaz naturel",`<ul><li>Toujours gazeux, <b>densité 0,55</b> : monte en partie haute.</li><li><b>LIE 5 %, LSE 15 %</b>. Butane 1,5/8,5 (densité 2), propane 2,2/9,5 (densité 1,53).</li><li>Odorisé au <b>THT</b>. Non toxique mais asphyxiant.</li><li>Gaz étalon de l'Altair 4X.</li></ul>`)
+  +fFin("FGI","Inflammation des gaz d'incendie",`<ul><li>Fire Gas Ignition : fumées riches en imbrûlés qui s'enflamment au contact d'une source de chaleur.</li><li>Déclencheur : <b>apport d'énergie d'activation</b>. Possible avec des <b>fumées froides</b>.</li><li>Backdraft : apport de comburant. Flashover : rayonnement.</li></ul>`)
+  +fFin("Frein de charge, ligne de vie, ligne guide","LSPCC et engagement",`<ul><li><b>Frein de charge</b> : huit descendeur, 2000 kg, <b>toujours en point fixe</b>, clé d'arrêt pour bloquer la corde.</li><li><b>Ligne de vie</b> = ligne guide + ligne personnelle. Un tuyau établi peut servir de ligne guide.</li><li><b>Ligne guide</b> : <b>50 à 60 m, Ø 6 à 8 mm</b>. 1 olive en 2e position = sortie, 3 olives = feu. Jusqu'à 3 dérivations.</li></ul>`)
+  +fFin("Techniques de respiration sous ARI","Économie d'air",`<div class="tbl"><table><tbody><tr><td><b>Sauter une respiration</b></td><td ${W}>Inspirer profond, retenir, expirer lentement. 3-4/min</td></tr><tr><td><b>Intervalle respiratoire</b></td><td ${W}>5 s inspi, 5 s bloqué, 5 s expi, 5 s bloqué</td></tr><tr><td><b>Reilly</b></td><td ${W}>Expirer lentement en fredonnant. 2/min, ralentit le cœur</td></tr><tr><td><b>2/4</b></td><td ${W}>Inspirer 2 s, expirer 4 s</td></tr></tbody></table></div><p>Consommation : effort 90-100 l/min, moyenne 40-70, économie 10-12. Fuite : robinet 1/4 de tour, inspirer, fermer, retenir.</p>`);
+  $("#fq").onclick=()=>startQuiz(finalPool(),999,"QCM révision finale");
+  $("#fq20").onclick=()=>startQuiz(finalPool(),20,"QCM rapide révision finale");
 }
 
 /* ================= ÉCRAN SÉANCE ================= */
@@ -2058,7 +2199,7 @@ document.addEventListener("visibilitychange",()=>{if(!document.hidden&&!stack.le
 </script>
 
 <script>
-const APP_VERSION="2026.11.21-1";
+const APP_VERSION="2026.11.22-3";
 /* Vérifie version.json : si une nouvelle version est en ligne, recharge l'appli. */
 function checkVersion(){fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null).then(j=>{if(j&&j.version&&j.version!==APP_VERSION) location.reload()}).catch(()=>{})}
 setTimeout(checkVersion,3000);
